@@ -54,14 +54,14 @@ async def check_word(word_request: WordValidationRequest):
     return {
         "word": word,
         "belongs": belongs,
-        "derivation_tree_particular": "zzzzzzzzzz",
+        "derivation_tree_particular": derivation_tree_particular,
         "derivation_tree_general": derivation_tree_general
     }
 
 
 # Función de verificación de palabra (actualizada)
 def verify_word(word: str, grammar: Grammar) -> bool:
-    # global used_productions
+    global used_productions
     used_productions = [] # Reiniciar la lista
     used_production = ""  # Variable temporal para almacenar la producción utilizada
     def dfs(stack, word_index):
@@ -104,7 +104,7 @@ def verify_word(word: str, grammar: Grammar) -> bool:
     result = dfs([grammar.start_symbol], 0)
     print("----")
     print("Resultado:", result)  # Verificar si la palabra pertenece a la gramática
-    used_productions.append(used_production)
+    # used_productions.append(used_production)
     print("Producciones utilizadas:", used_productions)  # Ver las producciones utilizadas
     return result  # Devolver el resultado final
 
